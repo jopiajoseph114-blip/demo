@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joseph Jopia | Portfolio · Zoom</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #000000, #2c2c2c);
+      color: #fff;
+    }
+    .top-line {
+      height: 4px;
+      background: linear-gradient(to right, #ffffff, #888888);
+    }
+    header {
+      text-align: center;
+      padding: 35px 20px;
+    }
+    .profile-img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-top: 15px;
+      border: 3px solid #fff;
+      box-shadow: 0 0 20px rgba(255,255,255,0.4);
+    }
+    .cv-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 28px;
+      border-radius: 30px;
+      border: 1px solid #fff;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+    .cv-btn:hover {
+      background: #fff;
+      color: #000;
+      box-shadow: 0 8px 20px rgba(255,255,255,0.4);
+    }
+    .nav-buttons {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .nav-buttons button {
+      background: #111;
+      color: #fff;
+      border: 1px solid #fff;
+      padding: 10px 26px;
+      margin: 6px;
+      cursor: pointer;
+      border-radius: 30px;
+      transition: 0.3s;
+    }
+    .nav-buttons button:hover {
+      background: #fff;
+      color: #000;
+      transform: translateY(-2px);
+    }
+    section {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    .card {
+      background: rgba(17, 17, 17, 0.9);
+      padding: 25px;
+      margin-bottom: 20px;
+      border-radius: 14px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+    }
+    .hidden {
+      display: none;
+    }
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 20px;
+      text-align: center;
+    }
+    .skill-item {
+      background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+      padding: 22px;
+      border-radius: 12px;
+    }
+    .skill-item i {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+    /* Projects grid */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    .project-item {
+      height: 160px;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;                /* indicate clickable */
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .project-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px rgba(255,255,255,0.2);
+    }
+    .project-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;           /* let the click go to parent */
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: rgba(0,0,0,0.6);
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    /* ---------- ZOOM OVERLAY (LIGHTBOX) ---------- */
+    .zoom-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.95);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      backdrop-filter: blur(4px);
+      cursor: pointer;
+    }
+    .zoom-overlay img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 8px;
+      box-shadow: 0 0 30px rgba(255,255,255,0.3);
+      border: 3px solid #fff;
+      transition: transform 0.2s;
+      cursor: default;
+    }
+    .close-zoom {
+      position: absolute;
+      top: 30px;
+      right: 45px;
+      font-size: 50px;
+      color: white;
+      cursor: pointer;
+      font-weight: 300;
+      transition: 0.2s;
+    }
+    .close-zoom:hover {
+      color: #ccc;
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-line"></div>
+
+<header>
+  <h1>Joseph D. Jopia</h1>
+  <p>BS Information Technology | Fresh Graduate</p>
+  <img src="Profile.jpg" alt="Joseph Jopia" class="profile-img" onerror="this.src='https://via.placeholder.com/160x160?text=Joseph'">
+  <br>
+  <a href="Joseph_Jopia_Cvv.pdf" download="Joseph_Jopia_Cvv.pdf" class="cv-btn">Download CV</a>
+</header>
+
+<div class="nav-buttons">
+  <button onclick="showHome()">Home</button>
+  <button onclick="showSkills()">Skills</button>
+  <button onclick="showProjects()">Projects</button>
+</div>
+
+<section>
+  <!-- HOME card -->
+  <div id="home" class="card">
+    <h2>About Me</h2>
+    <p>
+      I am a fresh graduate from City College of Tagaytay with a Bachelor of Science in Information Technology.
+      I am hardworking, eager to learn, and open to new challenges. I may not have much experience yet, but
+      I am a fast learner and motivated to improve my skills and contribute to the company. My hobbies include
+      playing online games, jogging, and practicing photo and video editing.
+    </p>
+  </div>
+
+  <!-- SKILLS card -->
+  <div id="skills" class="card hidden">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-item"><i class="fa-brands fa-html5"></i><p>HTML</p></div>
+      <div class="skill-item"><i class="fa-brands fa-css3-alt"></i><p>CSS</p></div>
+      <div class="skill-item"><i class="fa-solid fa-file-excel"></i><p>MS Excel</p></div>
+      <div class="skill-item"><i class="fa-solid fa-screwdriver-wrench"></i><p>Troubleshooting</p></div>
+      <div class="skill-item"><i class="fa-solid fa-bolt"></i><p>Fast Learner</p></div>
+    </div>
+  </div>
+
+  <!-- PROJECTS card (with clickable images) -->
+  <div id="projects" class="card hidden">
+    <div class="project-grid">
+      <!-- Added data-src with same src, but can also use different hi-res if needed -->
+      <div class="project-item" data-src="kios.jpg" onclick="zoomImage(this)">
+        <img src="kios.jpg" alt="Document Printing Kiosk System" onerror="this.src='https://via.placeholder.com/300x200?text=Kiosk'">
+      </div>
+      <div class="project-item" data-src="project2.jpg" onclick="zoomImage(this)">
+        <img src="project2.jpg" alt="Web Project" onerror="this.src='https://via.placeholder.com/300x200?text=Web+Project'">
+      </div>
+      <div class="project-item" data-src="project3.png" onclick="zoomImage(this)">
+        <img src="project3.png" alt="Editing Project" onerror="this.src='https://via.placeholder.com/300x200?text=Editing'">
+      </div>
+      <div class="project-item" data-src="project4.png" onclick="zoomImage(this)">
+        <img src="project4.png" alt="Other Project" onerror="this.src='https://via.placeholder.com/300x200?text=Other+Project'">
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT card (always visible) -->
+  <div class="card">
+    <h2>Contact</h2>
+    <p>Email: jopiajoseph114@gmail.com</p>
+    <p>Phone: 09108342022</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Joseph Jopia</p>
+</footer>
+
+<!-- ZOOM OVERLAY (lightbox) -->
+<div id="zoomOverlay" class="zoom-overlay" onclick="closeZoom()">
+  <span class="close-zoom" onclick="closeZoom(event)">&times;</span>
+  <img id="zoomImg" src="" alt="zoom preview">
+</div>
+
+<script>
+  // ----- navigation functions -----
+  function showHome() {
+    document.getElementById('home').classList.remove('hidden');
+    document.getElementById('skills').classList.add('hidden');
+    document.getElementById('projects').classList.add('hidden');
+  }
+  function showSkills() {
+    document.getElementById('skills').classList.remove('hidden');
+    document.getElementById('home').classList.add('hidden');
+    document.getElementById('projects').classList.add('hidden');
+  }
+  function showProjects() {
+    document.getElementById('projects').classList.remove('hidden');
+    document.getElementById('home').classList.add('hidden');
+    document.getElementById('skills').classList.add('hidden');
+  }
+
+  // ----- ZOOM FUNCTIONALITY -----
+  function zoomImage(element) {
+    // get the image source: first try data-src, else fallback to child img src
+    let src = element.getAttribute('data-src');
+    if (!src) {
+      // if data-src missing, get from img inside
+      const imgInside = element.querySelector('img');
+      if (imgInside) src = imgInside.src;
+    }
+    if (src) {
+      const overlay = document.getElementById('zoomOverlay');
+      const zoomImg = document.getElementById('zoomImg');
+      zoomImg.src = src;
+      overlay.style.display = 'flex';   // show overlay
+    }
+  }
+
+  // close zoom overlay
+  function closeZoom(event) {
+    // if event exists and it's not the overlay background, prevent bubbling
+    if (event) {
+      event.stopPropagation(); // avoid interfering with overlay click
+    }
+    document.getElementById('zoomOverlay').style.display = 'none';
+  }
+
+  // Also close when clicking on the overlay background (but not when clicking the image itself)
+  document.getElementById('zoomOverlay').addEventListener('click', function(e) {
+    // if the clicked element is the overlay itself (background) or the close span
+    if (e.target === this || e.target.classList.contains('close-zoom')) {
+      closeZoom();
+    }
+  });
+
+  // Prevent click on image from closing (so user can right-click etc.)
+  document.getElementById('zoomImg').addEventListener('click', function(e) {
+    e.stopPropagation();
+  });
+
+  // optional: Escape key closes zoom
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeZoom();
+    }
+  });
+</script>
+
+<!-- Placeholder fallback for demo (in case images missing) -->
+</body>
+</html>
